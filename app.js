@@ -1,20 +1,20 @@
-function obtenerProductos(done) {
+function obtenerProductos(prods) {
   const productos = fetch("https://fakestoreapi.com/products");
 
   productos
-    .then((response) => response.json())
-    .then((data) => {
-      done(data);
+    .then((respuesta) => respuesta.json())
+    .then((datos) => {
+      prods(datos);
     });
 }
 
-obtenerProductos((data) => {
-  console.log(data);
+obtenerProductos((datos) => {
+  console.log(datos);
 
-  data.forEach((productos) => {
-    const article = document.createRange().createContextualFragment(`
-    <article class="max-w-sm rounded overflow-hidden shadow-lg">
-            <div class="flex justify-center">
+  datos.forEach((productos) => {
+    const componente = document.createRange().createContextualFragment(`
+    <article class="max-w-sm rounded-lg	 overflow-hidden shadow-lg border ">
+            <div class="flex justify-center pt-4">
                 <img class="w-40" src="${productos.image}" alt="">
             </div>
             <div class="flex items-center justify-center text-center pt-4 px-6">
@@ -59,6 +59,6 @@ obtenerProductos((data) => {
 
     const main = document.querySelector("main");
 
-    main.append(article);
+      main.append(componente);
   });
 });
